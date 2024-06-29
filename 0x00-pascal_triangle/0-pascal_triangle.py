@@ -21,15 +21,9 @@ def pascal_triangle(n):
     ]
     """
     pascal = [[1] for _ in range(n)]
-    for idx in range(n):
+    for idx in range(1, n):
         for idy in range(1, idx + 1):
-            if idx > 0:
-                p = pascal[idx - 1][idy - 1]
-            else:
-                p = 0
-            if idx > 0 and idy < len(pascal[idx - 1]):
-                n = pascal[idx - 1][idy]
-            else:
-                n = 0
-            pascal[idx].append(p + n)
+            prev = pascal[idx - 1][idy - 1]
+            next = pascal[idx - 1][idy] if idx != idy else 0
+            pascal[idx].append(prev + next)
     return pascal
