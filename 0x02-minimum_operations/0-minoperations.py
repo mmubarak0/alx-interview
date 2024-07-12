@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 """Calculate minimum operations."""
 
+
 def minOperations(n):
-    """Calculates the fewest number of operations to get exactly n H.
+    """Calculate the fewest number of operations to get exactly n H.
 
     In a text file, there is a single character H. Your text
     editor can execute only two operations in this file:
