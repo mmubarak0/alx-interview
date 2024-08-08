@@ -6,13 +6,13 @@ const getPeople = async (id) => {
   const url = `https://swapi-api.hbtn.io/api/films/${id}`;
   await request(url, (error, response, body) => {
     if (error) {
-      console.log(error);
+      throw error;
     }
     const characters = JSON.parse(body).characters;
     characters.forEach((character) => {
       request(character, (error, response, body) => {
         if (error) {
-          console.log(error);
+          throw error;
         }
         console.log(JSON.parse(body).name);
       });
