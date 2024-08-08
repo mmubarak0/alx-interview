@@ -4,7 +4,7 @@ const request = require('request');
 
 const getPeople = async (id) => {
   const url = `https://swapi-api.hbtn.io/api/films/${id}`;
-  await request(url, (error, response, body) => {
+  await request.get(url, (error, response, body) => {
     if (error) {
       throw error;
     }
@@ -20,9 +20,9 @@ const getPeople = async (id) => {
   });
 };
 
-function main () {
+async function main () {
   const id = process.argv[2];
-  getPeople(id);
+  await getPeople(id);
 }
 
 main();
