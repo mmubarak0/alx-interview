@@ -4,21 +4,19 @@ const request = require('request');
 
 const getPeople = async (id) => {
   const url = `https://swapi-api.hbtn.io/api/films/${id}`;
-  request(url, async (err, response, body) => {
-    if (err) {
-      console.log(err);
+  await request.get(url, (error, response, body) => {
+    if (error) {
+      throw error;
     }
-    for (const Id of JSON.parse(body).characters) {
-      await new Promise((resolve, reject) => {
-        request(Id, (err, response, body) => {
-          if (err) {
-            reject(err);
-          }
-          console.log(JSON.parse(body).name);
-          resolve();
-        });
+    const characters = JSON.parse(body).characters;
+    characters.forEach((character) => {
+      request(character, (error, response, body) => {
+        if (error) {
+          throw error;
+        }
+        console.log(JSON.parse(body).name);
       });
-    }
+    });
   });
 };
 
